@@ -1,0 +1,7 @@
+npm run start:dev
+
+혹은 log 기록 필요할때
+npm run start:dev > backend.log 2>&1
+
+백그라운드실행(권장x)
+start /B npm run start:dev > backend.log 2>&1
