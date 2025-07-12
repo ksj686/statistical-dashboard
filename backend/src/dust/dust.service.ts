@@ -22,11 +22,13 @@ export class DustService {
       const items = response.data.response.body.items;
 
       for (const item of items) {
-        const dust = new Dust();
-        dust.sidoName = item.sidoName;
-        dust.stationName = item.stationName;
-        dust.pm10Value = item.pm10Value;
-        await this.dustRepository.save(dust);
+        if (item.pm10Value && !isNaN(parseInt(item.pm10Value, 10))) {
+          const dust = new Dust();
+          dust.sidoName = item.sidoName;
+          dust.stationName = item.stationName;
+          dust.pm10Value = parseInt(item.pm10Value, 10);
+          await this.dustRepository.save(dust);
+        }
       }
     } catch (error) {
       console.error('Error fetching or saving dust data:', error);
