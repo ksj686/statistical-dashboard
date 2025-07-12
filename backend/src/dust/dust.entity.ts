@@ -14,6 +14,6 @@ export class Dust {
   @Column()
   pm10Value: number;
 
-  @CreateDateColumn()
+  @Column({ type: 'datetime' })
   timestamp: Date;
 }

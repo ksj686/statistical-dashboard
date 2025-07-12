@@ -14,17 +14,6 @@ export class DustService {
   ) {}
 
   async fetchAndSaveDustData(): Promise<void> {
-    const today = new Date().toISOString().split('T')[0];
-    const count = await this.dustRepository
-      .createQueryBuilder('dust')
-      .where('DATE(dust.timestamp) = :date', { date: today })
-      .getCount();
-
-    if (count > 0) {
-      console.log(`Data for date ${today} already exists. Skipping fetch.`);
-      return;
-    }
-
     const apiKey = this.configService.get<string>('SEOUL_API_KEY');
     const url = `http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${apiKey}&returnType=json&numOfRows=100&pageNo=1&sidoName=서울&ver=1.0`;
 
@@ -32,16 +21,37 @@ export class DustService {
       const response = await axios.get(url);
       const items = response.data.response.body.items;
 
+      if (!items || items.length === 0) {
+        console.log('No data received from the API.');
+        return;
+      }
+
+      const latestDataTime = items[0].dataTime;
+      const datePart = latestDataTime.split(' ')[0];
+
+      const count = await this.dustRepository
+        .createQueryBuilder('dust')
+        .where('DATE(dust.timestamp) = :date', { date: datePart })
+        .getCount();
+
+      if (count > 0) {
+        console.log(`Data for date ${datePart} already exists. Skipping fetch.`);
+        return;
+      }
+
       for (const item of items) {
-        const dust = new Dust();
-        dust.sidoName = item.sidoName;
-        dust.stationName = item.stationName;
-        dust.pm10Value = item.pm10Value;
-        await this.dustRepository.save(dust);
+        if (item.pm10Value && !isNaN(parseInt(item.pm10Value, 10))) {
+          const dust = new Dust();
+          dust.sidoName = item.sidoName;
+          dust.stationName = item.stationName;
+          dust.pm10Value = parseInt(item.pm10Value, 10);
+          dust.timestamp = new Date(item.dataTime);
+          await this.dustRepository.save(dust);
+        }
       }
     } catch (error) {
       console.error('Error fetching or saving dust data:', error);
-      throw error; // re-throw the error to be handled by NestJS default error handling
+      throw error;
     }
   }
 
