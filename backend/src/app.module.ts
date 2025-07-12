@@ -16,6 +16,7 @@ import { DustModule } from './dust/dust.module';
       database: 'database.sqlite',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
+      logging: true,
     }),
     DustModule,
   ],

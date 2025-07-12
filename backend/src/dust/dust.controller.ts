@@ -1,7 +1,7 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Query } from '@nestjs/common';
 import { DustService } from './dust.service';
 import { Dust } from './dust.entity';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 
 @ApiTags('dust')
 @Controller('dust')
@@ -17,9 +17,17 @@ export class DustController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all dust data' })
-  @ApiResponse({ status: 200, description: 'Return all dust data.', type: [Dust] })
-  async getDustData(): Promise<Dust[]> {
-    return this.dustService.getDustData();
+  @ApiOperation({ summary: 'Get dust data, optionally filtered by date' })
+  @ApiQuery({ name: 'date', required: false, description: 'Date to filter data by (YYYY-MM-DD)' })
+  @ApiResponse({ status: 200, description: 'Return dust data.', type: [Dust] })
+  async getDustData(@Query('date') date?: string): Promise<Dust[]> {
+    return this.dustService.getDustData(date);
+  }
+
+  @Get('dates')
+  @ApiOperation({ summary: 'Get distinct dates from dust data' })
+  @ApiResponse({ status: 200, description: 'Return distinct dates.', type: [String] })
+  async getDistinctDates(): Promise<string[]> {
+    return this.dustService.getDistinctDates();
   }
 }

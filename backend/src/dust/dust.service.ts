@@ -14,6 +14,17 @@ export class DustService {
   ) {}
 
   async fetchAndSaveDustData(): Promise<void> {
+    const today = new Date().toISOString().split('T')[0];
+    const count = await this.dustRepository
+      .createQueryBuilder('dust')
+      .where('DATE(dust.timestamp) = :date', { date: today })
+      .getCount();
+
+    if (count > 0) {
+      console.log(`Data for date ${today} already exists. Skipping fetch.`);
+      return;
+    }
+
     const apiKey = this.configService.get<string>('SEOUL_API_KEY');
     const url = `http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${apiKey}&returnType=json&numOfRows=100&pageNo=1&sidoName=서울&ver=1.0`;
 
@@ -30,10 +41,26 @@ export class DustService {
       }
     } catch (error) {
       console.error('Error fetching or saving dust data:', error);
+      throw error; // re-throw the error to be handled by NestJS default error handling
     }
   }
 
-  async getDustData(): Promise<Dust[]> {
+  async getDustData(date?: string): Promise<Dust[]> {
+    if (date) {
+      return this.dustRepository
+        .createQueryBuilder('dust')
+        .where('DATE(dust.timestamp) = :date', { date })
+        .getMany();
+    }
     return this.dustRepository.find();
+  }
+
+  async getDistinctDates(): Promise<string[]> {
+    const result = await this.dustRepository
+      .createQueryBuilder('dust')
+      .select('DISTINCT DATE(dust.timestamp)', 'date')
+      .orderBy('date', 'DESC')
+      .getRawMany();
+    return result.map((item) => item.date);
   }
 }
