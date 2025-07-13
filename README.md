@@ -58,6 +58,9 @@
 <br><br>
 ## 4. 프로젝트 구조도
 
+- Nest.js 프레임워크 기반의 모듈화된 구조
+- 각 데이터 테이블(dust, pm102023)별로 독립적인 모듈, 컨트롤러, 서비스 구성
+
 ```
 statistical-dashboard/
 ├── backend/
