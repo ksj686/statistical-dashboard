@@ -4,6 +4,10 @@ import { Repository } from 'typeorm';
 import { Dust } from './dust.entity';
 import axios from 'axios';
 import { ConfigService } from '@nestjs/config';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as csv from 'csv-parser';
+import * as iconv from 'iconv-lite';
 
 @Injectable()
 export class DustService {
@@ -72,5 +76,38 @@ export class DustService {
       .orderBy('date', 'DESC')
       .getRawMany();
     return result.map((item) => item.date);
+  }
+
+  async importDataFromCsv(): Promise<{ message: string }> {
+    const filePath = path.resolve(__dirname, '..', '..', 'dust.csv');
+    const entities: Dust[] = [];
+
+    return new Promise((resolve, reject) => {
+      fs.createReadStream(filePath)
+        .pipe(iconv.decodeStream('utf-8')) // CSV 파일 인코딩에 따라 변경
+        .pipe(csv())
+        .on('data', (row) => {
+          const dust = new Dust();
+          dust.id = parseInt(row.id, 10);
+          dust.sidoName = row.sidoName;
+          dust.stationName = row.stationName;
+          dust.pm10Value = parseInt(row.pm10Value, 10);
+          dust.timestamp = new Date(row.timestamp);
+          entities.push(dust);
+        })
+        .on('end', async () => {
+          try {
+            await this.dustRepository.save(entities);
+            resolve({ message: 'Dust data imported successfully from CSV.' });
+          } catch (error) {
+            console.error('Error saving data from CSV:', error);
+            reject({ message: 'Failed to import dust data from CSV.' });
+          }
+        })
+        .on('error', (error) => {
+          console.error('Error reading dust CSV:', error);
+          reject({ message: 'Failed to read dust CSV file.' });
+        });
+    });
   }
 }

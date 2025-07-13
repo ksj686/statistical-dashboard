@@ -30,4 +30,12 @@ export class DustController {
   async getDistinctDates(): Promise<string[]> {
     return this.dustService.getDistinctDates();
   }
+
+  @Post('import-csv')
+  @ApiOperation({ summary: 'Import dust data from CSV file' })
+  @ApiResponse({ status: 201, description: 'Dust data imported successfully from CSV.' })
+  @ApiResponse({ status: 500, description: 'Internal server error.' })
+  async importDustDataFromCsv(): Promise<{ message: string }> {
+    return this.dustService.importDataFromCsv();
+  }
 }
