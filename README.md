@@ -42,18 +42,18 @@
 <br><br>
 ## 3. 프로젝트 설계 및 환경설정 절차
 
-### 3.1. Backend 설정
-
-1.  `statistical-dashboard/backend` 디렉토리로 이동
-2.  `npm install` 명령어로 의존성 설치
-3.  `.env` 파일 생성 및 내용 채우기
-4.  `npm run start:dev` 명령어로 백엔드 서버 실행
-
-### 3.2. Frontend 설정
-
-1.  `statistical-dashboard/frontend` 디렉토리로 이동
-2.  `npm install` 명령어로 의존성 설치
-3.  `npm run dev` 명령어로 프론트엔드 개발 서버 실행
+  ### 3.1. Backend 설정
+  
+  1.  `statistical-dashboard/backend` 디렉토리로 이동
+  2.  `npm install` 명령어로 의존성 설치
+  3.  `.env` 파일 생성 및 내용 채우기
+  4.  `npm run start:dev` 명령어로 백엔드 서버 실행
+  
+  ### 3.2. Frontend 설정
+  
+  1.  `statistical-dashboard/frontend` 디렉토리로 이동
+  2.  `npm install` 명령어로 의존성 설치
+  3.  `npm run dev` 명령어로 프론트엔드 개발 서버 실행
 
 <br><br>
 ## 4. 프로젝트 구조도
@@ -112,18 +112,18 @@ statistical-dashboard/
 
 - `2023_PM10_csv.csv` 파일 데이터 DB 저장 및 시각화 기능 제공
 
-### 6.1. 데이터 가져오기
-
-1.  `statistical-dashboard/backend` 디렉토리에 `2023_PM10_csv.csv` 파일 존재 확인
-2.  백엔드 서버 실행
-3.  Swagger UI (`http://localhost:3000/api`) 접속
-4.  `pm10-2023` 태그 확장 후 `POST /pm10-2023/import` 엔드포인트 실행하여 CSV 데이터 DB 저장
-
-### 6.2. 데이터 시각화
-
-1.  프론트엔드 서버 실행
-2.  브라우저에서 `http://localhost:5173/pm10-2023-chart` 경로 접속
-3.  `2023년 월별 미세먼지 평균` 라인 차트 확인
+  ### 6.1. 데이터 가져오기
+  
+  1.  `statistical-dashboard/backend` 디렉토리에 `2023_PM10_csv.csv` 파일 존재 확인
+  2.  백엔드 서버 실행
+  3.  Swagger UI (`http://localhost:3000/api`) 접속
+  4.  `pm10-2023` 태그 확장 후 `POST /pm10-2023/import` 엔드포인트 실행하여 CSV 데이터 DB 저장
+  
+  ### 6.2. 데이터 시각화
+  
+  1.  프론트엔드 서버 실행
+  2.  브라우저에서 `http://localhost:5173/pm10-2023-chart` 경로 접속
+  3.  `2023년 월별 미세먼지 평균` 라인 차트 확인
 
 <br><br>
 ## 7. 핵심 흐름 요약
