@@ -132,7 +132,7 @@ statistical-dashboard/
 2.  API를 호출하여 데이터를 DB에 저장하는 과정
     - Swagger UI (`http://localhost:3000/api`)에서 `POST /dust/import-csv` 실행하여 `dust.csv` 파일 데이터 DB 저장(**dust 테이블 백업 데이터**)
     - Swagger UI (`http://localhost:3000/api`)에서 `POST /dust/fetch` 실행하여 공공데이터 API 미세먼지 정보 수집(**시도별 실시간 측정정보**)
-    - Swagger UI (`http://localhost:3000/api`)에서 `POST /pm10-2023/import` 실행하여 `2023_PM10_csv.csv` 파일 데이터 DB 저장
+    - Swagger UI (`http://localhost:3000/api`)에서 `POST /pm10-2023/import` 실행하여 `2023_PM10_csv.csv` 파일 데이터 DB 저장 <br>
       (**2023년 서울지역 월별 미세먼지 데이터**)
 3.  프론트엔드 화면 (`http://localhost:5173/`)에서 서울시 지역별 미세먼지 차트 확인
 4.  `http://localhost:5173/pm10-2023-chart` 경로에서 2023년 서울시 월별 미세먼지 평균 라인 차트 확인
