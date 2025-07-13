@@ -7,6 +7,7 @@
 - 프론트엔드에서 차트 시각화
 - 로컬 CSV 파일 데이터 DB 저장 및 시각화 기능 포함
 
+<br><br>
 ## 2. 사용 기술 스택
 
 - **Backend**: Nest.js, TypeORM, sqlite
@@ -38,6 +39,7 @@
 - **Database**: Docker 기반 MySQL (현재 sqlite 사용 중)
 - **API Documentation**: Swagger
 
+<br><br>
 ## 3. 프로젝트 설계 및 환경설정 절차
 
 ### 3.1. Backend 설정
@@ -53,6 +55,7 @@
 2.  `npm install` 명령어로 의존성 설치
 3.  `npm run dev` 명령어로 프론트엔드 개발 서버 실행
 
+<br><br>
 ## 4. 프로젝트 구조도
 
 ```
@@ -91,6 +94,7 @@ statistical-dashboard/
     └── ...
 ```
 
+<br><br>
 ## 5. Swagger를 통한 API 테스트 방법
 
 1.  백엔드 서버 실행
@@ -104,6 +108,7 @@ statistical-dashboard/
     - `GET /pm10-2023`: DB 저장 2023년 PM10 데이터 조회
     - `GET /pm10-2023/monthly-average`: 2023년 월별 PM10 평균 데이터 조회
 
+<br><br>
 ## 6. CSV 데이터 가져오기 및 시각화
 
 - `2023_PM10_csv.csv` 파일 데이터 DB 저장 및 시각화 기능 제공
@@ -121,6 +126,7 @@ statistical-dashboard/
 2.  브라우저에서 `http://localhost:5173/pm10-2023-chart` 경로 접속
 3.  `2023년 월별 미세먼지 평균` 라인 차트 확인
 
+<br><br>
 ## 7. 핵심 흐름 요약
 
 1.  백엔드 및 프론트엔드 서버 실행
@@ -130,6 +136,7 @@ statistical-dashboard/
 5.  프론트엔드 화면 (`http://localhost:5173/`)에서 미세먼지 데이터 차트 시각화 확인
 6.  `http://localhost:5173/pm10-2023-chart` 경로에서 2023년 월별 미세먼지 평균 라인 차트 확인
 
+<br><br>
 ## 8. 데이터 종류
 
 - id: 고유 식별자 (숫자)
