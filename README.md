@@ -21,7 +21,7 @@
     - iconv-lite: `^0.6.3` <br>
     - @nestjs/swagger: `^11.2.0` <br>
     
-</details>
+  </details>
 
 - **Frontend**: React.js, Vite, Recharts
   <details>
@@ -33,16 +33,10 @@
     - axios: `^1.10.0` <br>
     - react-router-dom: `^7.6.3` <br>
     
-</details>
+  </details>
 
 - **Database**: Docker 기반 MySQL (현재 sqlite 사용 중)
 - **API Documentation**: Swagger
-
-
-
-
-* **Database**: Docker 기반 MySQL (현재 sqlite 사용 중)
-* **API Documentation**: Swagger
 
 ## 3. 프로젝트 설계 및 환경설정 절차
 
