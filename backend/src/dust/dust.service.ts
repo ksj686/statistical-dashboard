@@ -79,7 +79,7 @@ export class DustService {
   }
 
   async importDataFromCsv(): Promise<{ message: string }> {
-    const filePath = path.resolve(__dirname, '..', '..', 'dust.csv');
+    const filePath = path.resolve(__dirname, '..', '..', '..', 'dust.csv');
     const entities: Dust[] = [];
 
     return new Promise((resolve, reject) => {
@@ -91,8 +91,12 @@ export class DustService {
           dust.id = parseInt(row.id, 10);
           dust.sidoName = row.sidoName;
           dust.stationName = row.stationName;
-          dust.pm10Value = parseInt(row.pm10Value, 10);
-          dust.timestamp = new Date(row.timestamp);
+          let pm10Value = parseInt(row.pm10Value, 10);
+          if (isNaN(pm10Value)) {
+            pm10Value = 0; // 또는 다른 기본값, 혹은 해당 레코드 건너뛰기
+          }
+          dust.pm10Value = pm10Value;
+          dust.timestamp = new Date(row.timestamp + 'Z');
           entities.push(dust);
         })
         .on('end', async () => {
