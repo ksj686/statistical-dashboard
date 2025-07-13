@@ -3,9 +3,9 @@
 ## 1. 프로젝트 목적 및 개요
 
 - Nest.js, TypeORM, sqlite, React.js 기반 통계 대시보드 구축
-- 공공데이터 API 미세먼지 농도 데이터 수집 및 DB 저장
+- 공공데이터 수집 및 DB 저장 (**미세먼지 농도 데이터**) 
 - 프론트엔드에서 차트 시각화
-- 로컬 CSV 파일 데이터 DB 저장 및 시각화 기능 포함
+- CSV 파일 데이터를 DB에 저장 후 시각화
 
 <br><br>
 ## 2. 사용 기술 스택
@@ -36,7 +36,7 @@
     
   </details>
 
-- **Database**: Docker 기반 MySQL (현재 sqlite 사용 중)
+- **Database**: sqlite
 - **API Documentation**: Swagger
 
 <br><br>
@@ -78,7 +78,6 @@ statistical-dashboard/
 │   │   ├── main.ts
 │   │   └── swagger.ts
 │   ├── .env
-│   ├── docker-compose.yml
 │   └── ...
 └── frontend/
     ├── src/
@@ -130,11 +129,12 @@ statistical-dashboard/
 ## 7. 핵심 흐름 요약
 
 1.  백엔드 및 프론트엔드 서버 실행
-2.  Swagger UI (`http://localhost:3000/api`)에서 `POST /dust/fetch` 실행하여 공공데이터 API 미세먼지 데이터 수집
-3.  Swagger UI (`http://localhost:3000/api`)에서 `POST /dust/import-csv` 실행하여 `dust.csv` 파일 데이터 DB 저장
-4.  Swagger UI (`http://localhost:3000/api`)에서 `POST /pm10-2023/import` 실행하여 `2023_PM10_csv.csv` 파일 데이터 DB 저장
-5.  프론트엔드 화면 (`http://localhost:5173/`)에서 미세먼지 데이터 차트 시각화 확인
-6.  `http://localhost:5173/pm10-2023-chart` 경로에서 2023년 월별 미세먼지 평균 라인 차트 확인
+2.  API를 호출하여 데이터를 DB에 저장하는 과정
+    - Swagger UI (`http://localhost:3000/api`)에서 `POST /dust/fetch` 실행하여 공공데이터 API 미세먼지 정보 수집(**시도별 실시간 측정정보**)
+    - Swagger UI (`http://localhost:3000/api`)에서 `POST /dust/import-csv` 실행하여 `dust.csv` 파일 데이터 DB 저장(**dust 테이블 백업 데이터**)
+    - Swagger UI (`http://localhost:3000/api`)에서 `POST /pm10-2023/import` 실행하여 `2023_PM10_csv.csv` 파일 데이터 DB 저장(**2023년 서울지역 월별 미세먼지 데이터**)
+3.  프론트엔드 화면 (`http://localhost:5173/`)에서 미세먼지 데이터 차트 시각화 확인
+4.  `http://localhost:5173/pm10-2023-chart` 경로에서 2023년 월별 미세먼지 평균 라인 차트 확인
 
 <br><br>
 ## 8. 데이터 종류
