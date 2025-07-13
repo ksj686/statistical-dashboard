@@ -1,22 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
+import axios from "axios";
 
 const DustChart = () => {
   const [data, setData] = useState([]);
   const [dates, setDates] = useState([]);
-  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedDate, setSelectedDate] = useState("");
 
   useEffect(() => {
     const fetchDates = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/dust/dates');
+        const response = await axios.get("http://localhost:3000/dust/dates");
         setDates(response.data);
         if (response.data.length > 0) {
           setSelectedDate(response.data[0]);
         }
       } catch (error) {
-        console.error('Error fetching dates:', error);
+        console.error("Error fetching dates:", error);
       }
     };
 
@@ -28,10 +36,12 @@ const DustChart = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/dust?date=${selectedDate}`);
+        const response = await axios.get(
+          `http://localhost:3000/dust?date=${selectedDate}`
+        );
         setData(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -40,7 +50,10 @@ const DustChart = () => {
 
   return (
     <div>
-      <select onChange={(e) => setSelectedDate(e.target.value)} value={selectedDate}>
+      <select
+        onChange={(e) => setSelectedDate(e.target.value)}
+        value={selectedDate}
+      >
         {dates.map((date) => (
           <option key={date} value={date}>
             {date}
@@ -48,7 +61,7 @@ const DustChart = () => {
         ))}
       </select>
       <BarChart
-        width={1000}
+        width={1200}
         height={500}
         data={data}
         margin={{
@@ -59,7 +72,11 @@ const DustChart = () => {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="stationName" />
+        <XAxis
+          dataKey="stationName"
+          tick={{ angle: -45, textAnchor: "end", fontSize: 10 }}
+          interval={0}
+        />
         <YAxis />
         <Tooltip />
         <Legend />
