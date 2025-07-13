@@ -14,6 +14,7 @@
 - **Database**: Docker 기반 MySQL (현재 sqlite 사용 중)
 - **API Documentation**: Swagger
 
+<details>
 * **Backend**
   - Nest.js: `^11.0.1`
   - TypeORM: `^0.3.25`
@@ -28,6 +29,8 @@
   - Recharts: `^3.1.0`
   - axios: `^1.10.0`
   - react-router-dom: `^7.6.3`
+</details>
+
 * **Database**: Docker 기반 MySQL (현재 sqlite 사용 중)
 * **API Documentation**: Swagger
 
