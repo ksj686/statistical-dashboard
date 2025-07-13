@@ -2,7 +2,7 @@
 
 ## 1. 프로젝트 목적 및 개요
 
-- Nest.js, TypeORM, sqlite, React.js 기반 통계 대시보드 구축
+- Nest.js, TypeORM, SQLite, React.js 기반 통계 대시보드 구축
 - 공공데이터 수집 및 DB 저장 (**미세먼지 농도 데이터**) 
 - 프론트엔드에서 차트 시각화
 - CSV 파일 데이터를 DB에 저장 후 시각화
@@ -10,7 +10,7 @@
 <br><br>
 ## 2. 사용 기술 스택
 
-- **Backend**: Nest.js, TypeORM, sqlite
+- **Backend**: Nest.js, TypeORM, SQLite
   <details>
     
   * **Backend** <br>
@@ -36,7 +36,7 @@
     
   </details>
 
-- **Database**: sqlite
+- **Database**: SQLite
 - **API Documentation**: Swagger
 
 <br><br>
