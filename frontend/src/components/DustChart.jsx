@@ -50,16 +50,18 @@ const DustChart = () => {
 
   return (
     <div>
-      <select
-        onChange={(e) => setSelectedDate(e.target.value)}
-        value={selectedDate}
-      >
-        {dates.map((date) => (
-          <option key={date} value={date}>
-            {date}
-          </option>
-        ))}
-      </select>
+      <div className="flex justify-center mb-4">
+        <select
+          onChange={(e) => setSelectedDate(e.target.value)}
+          value={selectedDate}
+        >
+          {dates.map((date) => (
+            <option key={date} value={date}>
+              {date}
+            </option>
+          ))}
+        </select>
+      </div>
       <BarChart
         width={1200}
         height={500}

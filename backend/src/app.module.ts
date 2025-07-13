@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { DustModule } from './dust/dust.module';
+import { Pm102023Module } from './pm10-2023/pm10-2023.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { DustModule } from './dust/dust.module';
       logging: true,
     }),
     DustModule,
+    Pm102023Module,
   ],
   controllers: [AppController],
   providers: [AppService],
