@@ -10,25 +10,29 @@
 ## 2. 사용 기술 스택
 
 - **Backend**: Nest.js, TypeORM, sqlite
-- <details>
-* **Backend** <br>
-  - Nest.js: `^11.0.1` <br>
-  - TypeORM: `^0.3.25` <br>
-  - sqlite3: `^5.1.7` <br>
-  - axios: `^1.10.0` <br>
-  - csv-parser: `^3.2.0` <br>
-  - iconv-lite: `^0.6.3` <br>
-  - @nestjs/swagger: `^11.2.0` <br>
+  <details>
+    
+  * **Backend** <br>
+    - Nest.js: `^11.0.1` <br>
+    - TypeORM: `^0.3.25` <br>
+    - sqlite3: `^5.1.7` <br>
+    - axios: `^1.10.0` <br>
+    - csv-parser: `^3.2.0` <br>
+    - iconv-lite: `^0.6.3` <br>
+    - @nestjs/swagger: `^11.2.0` <br>
+    
 </details>
 
 - **Frontend**: React.js, Vite, Recharts
-- <details>
-* **Frontend** <br>
-  - React.js: `^19.1.0` <br>
-  - Vite: `^7.0.3` <br>
-  - Recharts: `^3.1.0` <br>
-  - axios: `^1.10.0` <br>
-  - react-router-dom: `^7.6.3` <br>
+  <details>
+    
+  * **Frontend** <br>
+    - React.js: `^19.1.0` <br>
+    - Vite: `^7.0.3` <br>
+    - Recharts: `^3.1.0` <br>
+    - axios: `^1.10.0` <br>
+    - react-router-dom: `^7.6.3` <br>
+    
 </details>
 
 - **Database**: Docker 기반 MySQL (현재 sqlite 사용 중)
